@@ -3,10 +3,16 @@
   <head>
     <title>My experiment</title>
 
-    <script src="../jspsych/jspsych.js"></script>
-    <script src="../jspsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="../jspsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <link rel="stylesheet" href="../jspsych/css/jspsych.css">
+    <base target="_top">
+    
+    <script src="https://apfahler.in/jsPsychSheet/jspsych/jspsych.js"></script>
+    <script src="https://apfahler.in/jsPsychSheet/jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://apfahler.in/jsPsychSheet/jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <link rel="stylesheet" href="https://apfahler.in/jsPsychSheet/jspsych/css/jspsych.css">
+  
+  <script src="https://brain2ai.in/jsPsychSheet/jspsychsheet.js"></script>
+  <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsychsheet.css">
+    
   </head>
   <body></body>
   <script>
@@ -30,9 +36,9 @@
           "<p>If the circle is <strong>orange</strong>, press the letter J " +
           "as fast as you can.</p>" +
           "<div style='width: 700px;'>"+
-          "<div style='float: left;'><img src='img/blue.png'></img>" +
+          "<div style='float: left;'><img src='https://apfahler.github.io/jsPsychSheet/experiment/img/blue.png'></img>" +
           "<p class='small'><strong>Press the F key</strong></p></div>" +
-          "<div class='float: right;'><img src='img/orange.png'></img>" +
+          "<div class='float: right;'><img src='https://apfahler.github.io/jsPsychSheet/experiment/img/orange.png'></img>" +
           "<p class='small'><strong>Press the J key</strong></p></div>" +
           "</div>"+
           "<p>Press any key to begin.</p>",
@@ -43,8 +49,8 @@
     /* test trials */
 
     var test_stimuli = [
-      { stimulus: "img/blue.png", data: { test_part: 'test', correct_response: 'f' } },
-      { stimulus: "img/orange.png", data: { test_part: 'test', correct_response: 'j' } }
+      { stimulus: "https://apfahler.github.io/jsPsychSheet/experiment/img/blue.png", data: { test_part: 'test', correct_response: 'f' } },
+      { stimulus: "https://apfahler.github.io/jsPsychSheet/experiment/img/orange.png", data: { test_part: 'test', correct_response: 'j' } }
     ];
 
     var fixation = {
@@ -98,7 +104,7 @@
     jsPsych.init({
       timeline: timeline,
       on_finish: function() {
-        jsPsych.data.displayData();
+        jsPsychSheet.uploadData(jsPsych.data.get().csv());
       }
     });
   </script>
