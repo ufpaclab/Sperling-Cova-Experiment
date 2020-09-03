@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>COVA et al.</title>
+        <script src="jspsych-6.1.0/jspsych.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-sperling-canvas.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-survey-multi-choice.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
+        <script src="jspsych-6.1.0/plugins/jspsych-html-slider-response.js"></script>
+        <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <script>
+        var timeline = [];
+        
+        
+        timeline.push({
+            type: 'fullscreen',
+            fullscreen_mode: true
+            });
+    
+        var welcome = {
+             type: "html-keyboard-response",
+             stimulus: "Welcome to the experiment. Press any key to begin."
+        };
+            timeline.push(welcome);
+
+            //intro screen - explain what the experiment is going to ask them to do
+        
+            var fixation = {
+            type: "html-keyboard-response",
+            stimulus: '<p style="font-size: 48px; color:red;">+</p>',
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 500
+    }; 
+            timeline.push(fixation);
+
+        var trial = {
+            type: 'sperling-canvas',
+            trial_duration: 300  
+        };
+            timeline.push(trial);
+        
+        var blank_screen = {
+            type: "html-keyboard-response",
+            stimulus: "",
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 500
+        }; 
+            timeline.push(blank_screen);
+
+        var letters = {
+            type: "survey-text",
+            questions: [
+                {prompt: "Please enter all the letters you saw."}, 
+                ],
+        };
+            timeline.push(letters);
+
+        var question_1 = {    
+            type: "html-button-response",
+            stimulus: "In general, did you feel like you saw all the letters displayed on the screen?",
+            choices: ['YES','NO','I Do Not Know'], //can't write don't because ' is an issue
+        };
+            timeline.push(question_1);
+
+        var follow_up_1 = {
+            type: 'html-slider-response',
+            stimulus: "<p>I am _______ % certain of my response.</p>",
+            labels: ['0%','50%', '100%'],
+            prompt: "<p>How certain are you of your response to question 1, on a (0-100)% scale, with low numbers indicating that you are not sure and high numbers indicating that you are sure?</p>",
+        };
+            timeline.push(follow_up_1);
+        
+        var page_1_options = ["I felt like I saw all the letters in detail and was able to identify them at this time.", "I felt like I saw all the letters in detail, but without necessarily being able to identify them and tell which letters they were at this time.", "I felt like I saw all the letters, but not in detail: I just saw where they were, and that they were letters.", "I felt like I saw most letters, but not all.", "I felt like I saw only a small part of the letters.","I felt like I saw nothing."];
+
+        var question_2 = {
+             type: "survey-multi-choice",
+             questions: [
+             {prompt: "Think about what you experienced during the block that just ended. Which of the following statements best describe what you experienced when the letters were displayed on the screen?", options: page_1_options, required: true}, 
+                ],
+        };  
+            timeline.push(question_2); 
+
+        var follow_up_2 = {
+            type: 'html-slider-response',
+            stimulus: "<p>I am _______ % certain of my response.</p>",
+            labels: ['0%','50%', '100%'],
+            prompt: "<p>How certain are you of your response to question 2, on a (0-100)% scale, with low numbers indicating that you are not sure and high numbers indicating that you are sure?</p>",
+        };
+            timeline.push(follow_up_2);
+        // this part gets looped 3 times before moving on to the interview part
+
+        //add a slide that explains the goal of this experiment and what the next section is going to ask them to do (Interview section of supplemental materials)
+
+        var question_a = {
+            type: 'survey-text',
+            questions:  [
+                {prompt: "Describe in your own words what you saw when the letters were displayed on the screen."}, 
+                ],
+        };
+            timeline.push(question_a);
+
+        var theory = {
+            type: 'html-keyboard-response',
+            stimulus: "add the two theories?"
+        }; 
+            timeline.push(theory);
+
+        var question_b = {    
+            type: "html-button-response",
+            stimulus: "Do you understand both theories and see the differences between them?",
+            choices: ['YES','NO'], 
+        };
+            timeline.push(question_b);
+
+            var question_c = {    
+            type: "html-button-response",
+            stimulus: "Which of the two theories best match your own experience?",
+            choices: ['First Theory','Second Theory','I Do Not Know'], 
+        };
+            timeline.push(question_c);
+
+            var question_d = {    
+            type: "html-button-response",
+            stimulus: "Does the other theory still seem plausible?",
+            choices: ['Yes','No','I Do Not Know'], 
+        };
+            timeline.push(question_d);
+           
+            var question_e = {    
+            type: "html-button-response",
+            stimulus: "Is it correct that you saw certain letters in detail but others in a less precise way?",
+            choices: ['Correct','Not Correct'], 
+        };
+            timeline.push(question_e);
+
+            var question_f = {    
+            type: "html-button-response",
+            stimulus: "Did you sometimes feel like you saw a letter in detail, but then failed to report it?",
+            choices: ['Yes','No','I Do Not Know'], 
+        };
+            timeline.push(question_f);
+
+            var question_gandh = {    
+            type: "html-button-response",
+            stimulus: "Why did you fail to report it?",
+            choices: ['I failed to identify it as a specific letter at the time','I was able to identify the letter at the time but I was unable to keep it in memory long enough'], //add neither?
+        };
+            timeline.push(question_gandh);
+            
+            var question_i = {
+            type: "survey-text",
+            questions: [
+                {prompt: "How many letters, on average, did you have the impression to see in detail?"}, 
+                ],
+        };
+            timeline.push(question_i);
+
+        
+            //debriefing screen
+
+            var welcome = {
+  		    type: "html-keyboard-response",
+  		    stimulus: "You have finished the experiment! Press any key to exit."
+	    };
+            timeline.push(welcome);
+        
+            
+    jsPsych.init({
+  		timeline: timeline,
+  		on_finish: function() {
+    		jsPsych.data.displayData();
+  		}
+	});
+
+    </script>
+</html>
