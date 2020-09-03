@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>COVA et al.</title>
-        <script src="jspsych-6.1.0/jspsych.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-sperling-canvas.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-survey-multi-choice.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
-        <script src="jspsych-6.1.0/plugins/jspsych-html-slider-response.js"></script>
-        <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/jspsych.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/plugins/jspsych-html-keyboard-response.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-fullscreen.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-sperling-canvas.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-button-response.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-multi-choice.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-text.js"></script>
+        <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-slider-response.js"></script>
+        <link href="https://apfahler.github.io/jsPsychSheet/jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
     <script>
         var timeline = [];
@@ -170,11 +170,12 @@
         
             
     jsPsych.init({
-  		timeline: timeline,
-  		on_finish: function() {
-    		jsPsych.data.displayData();
-  		}
-	});
+  	timeline: timeline,
+  	show_progress_bar: true,
+  	on_finish: function() {
+      	jsPsychSheet.uploadData(jsPsych.data.get().csv());
+  }
+});
 
     </script>
 </html>
