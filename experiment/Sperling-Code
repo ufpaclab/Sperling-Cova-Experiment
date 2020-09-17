@@ -10,67 +10,134 @@
         <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-multi-choice.js"></script>
         <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-survey-text.js"></script>
         <script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-slider-response.js"></script>
+	<script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-external-html.js"></script>
+	<script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-instructions.js"></script>
         <link href="https://apfahler.github.io/jsPsychSheet/jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
     <script>
-        var timeline = [];
-        
+        timeline = []; 
         
         timeline.push({
             type: 'fullscreen',
             fullscreen_mode: true
             });
-    
-        var welcome = {
-             type: "html-keyboard-response",
-             stimulus: "Welcome to the experiment. Press any key to begin."
-        };
-            timeline.push(welcome);
+     
+        var intro = [];
+            
+            var welcome = {
+                type: "html-keyboard-response",
+                stimulus: "Welcome to the experiment. Press any key to begin."
+            }
+            var consent = {
+                type:'external-html',
+                url: "https://apfahler.github.io/jsPsychSheet/jspsych/plugins/consent.html",
+                cont_btn: "start",
+            }
+            //add consent  form external html plugin
+            var instructions = {
+                type: 'instructions',
+                pages: [
+                        'In this experiment you will be asked to report as many letters as you can from <br> an array of 12 letters that will be briefly displayed on the screen.',
+                        'The whole experiment will be divided into three blocks.<br> Each block will constist of 20 trials. <br> After each block you will be asked to complete a questionnaire.<br> At the end of the three blocks you will be asked to complete a brief interview were you answers will be recorded.',
+                        'Before you start the experiment you will participate in a practice trial. <br> An array of 12 letters will be displayed briefly on the screen <br> and you will be asked to record as many letter from the array as you can.'
+                        ],
+                show_clickable_nav: true
+            }
+        var intro = {
+           timeline: [welcome, instructions],
+       }
+//transition
+timeline.push(intro);
+                
+    var practice_trial = [];
 
-            //intro screen - explain what the experiment is going to ask them to do
-        
-            var fixation = {
-            type: "html-keyboard-response",
-            stimulus: '<p style="font-size: 48px; color:red;">+</p>',
-            choices: jsPsych.NO_KEYS,
-            trial_duration: 500
-    }; 
-            timeline.push(fixation);
-
-        var trial = {
-            type: 'sperling-canvas',
-            trial_duration: 300  
+       var fixation = {
+       type: "html-keyboard-response",
+       stimulus: '<p style="font-size: 48px; color:red;">+</p>',
+       choices: jsPsych.NO_KEYS,
+       trial_duration: 500
+   }
+       var test = {
+           type: "sperling-canvas",
+           trial_duration: 1000
+           //maybe say in instructions that this practice is slower than the real experiment
+   }
+       var blank_screen = {
+       type: "html-keyboard-response",
+       stimulus: "",
+       choices: jsPsych.NO_KEYS,
+       trial_duration: 500
+   }
+       var letters = {
+       type: "survey-text",
+       questions: [
+           {prompt: "Please enter all the letters you saw."}, 
+           ],
+   }
+        var question = {    
+            type: "html-button-response",
+            stimulus: '<p> Have you ever heard of an experiment that used these stimuli before? <br> OR <br> Have you participated in a task that showed you a letter grid that looked like this?</p>',
+            choices: ['YES','NO'],
         };
-            timeline.push(trial);
-        
-        var blank_screen = {
-            type: "html-keyboard-response",
-            stimulus: "",
-            choices: jsPsych.NO_KEYS,
-            trial_duration: 500
-        }; 
-            timeline.push(blank_screen);
+       var practice_trial = {
+           timeline: [fixation, test, blank_screen, letters, question],
+       }
+//transition
+timeline.push(practice_trial);
 
-        var letters = {
-            type: "survey-text",
-            questions: [
-                {prompt: "Please enter all the letters you saw."}, 
-                ],
-        };
-            timeline.push(letters);
+                    var start = {
+                    type: 'html-keyboard-response',
+                    stimulus: 'The experiment will begin now.'
+                }
+                timeline.push(start); 
+
+
+        var stimulus_block_1 = []; 
+                    
+                    var fixation = {
+                    type: "html-keyboard-response",
+                    stimulus: '<p style="font-size: 48px; color:red;">+</p>',
+                    choices: jsPsych.NO_KEYS,
+                    trial_duration: 500
+                }
+                    var test = {
+                        type: "sperling-canvas",
+                        trial_duration: 300
+                }
+                    var blank_screen = {
+                    type: "html-keyboard-response",
+                    stimulus: "",
+                    choices: jsPsych.NO_KEYS,
+                    trial_duration: 500
+                }
+                    var letters = {
+                    type: "survey-text",
+                    questions: [
+                        {prompt: "Please enter all the letters you saw."}, 
+                        ],
+                }
+                    var stimulus_block_1 = {
+                        timeline: [fixation, test, blank_screen, letters],
+                        repetitions: 3
+                    }
+            
+timeline.push(stimulus_block_1);
+
+
+        var questions_block_1 = [];
 
         var question_1 = {    
             type: "html-button-response",
-            stimulus: "In general, did you feel like you saw all the letters displayed on the screen?",
+            stimulus: '<p> In general, did you feel like you saw all the letters displayed on the screen?</p>',
             choices: ['YES','NO','I Do Not Know'], //can't write don't because ' is an issue
         };
             timeline.push(question_1);
 
         var follow_up_1 = {
             type: 'html-slider-response',
-            stimulus: "<p>I am _______ % certain of my response.</p>",
+            stimulus: '<p>I am _______ % certain of my response.</p>',
             labels: ['0%','50%', '100%'],
-            prompt: "<p>How certain are you of your response to question 1, on a (0-100)% scale, with low numbers indicating that you are not sure and high numbers indicating that you are sure?</p>",
+            prompt: '<p>How certain are you of your response to question 1, on a (0-100)% scale, with low numbers indicating that you are not sure and high numbers indicating that you are sure?</p>',
         };
             timeline.push(follow_up_1);
         
@@ -91,9 +158,11 @@
             prompt: "<p>How certain are you of your response to question 2, on a (0-100)% scale, with low numbers indicating that you are not sure and high numbers indicating that you are sure?</p>",
         };
             timeline.push(follow_up_2);
-        // this part gets looped 3 times before moving on to the interview part
+    
 
         //add a slide that explains the goal of this experiment and what the next section is going to ask them to do (Interview section of supplemental materials)
+
+    var interview = []; 
 
         var question_a = {
             type: 'survey-text',
@@ -101,12 +170,13 @@
                 {prompt: "Describe in your own words what you saw when the letters were displayed on the screen."}, 
                 ],
         };
-            timeline.push(question_a);
+            timeline.push(question_a); // change plugin for this question
 
         var theory = {
             type: 'html-keyboard-response',
             stimulus: "add the two theories?"
         }; 
+        //use instructions plugin
             timeline.push(theory);
 
         var question_b = {    
@@ -162,11 +232,12 @@
         
             //debriefing screen
 
-            var welcome = {
+            var exit = {
   		    type: "html-keyboard-response",
   		    stimulus: "You have finished the experiment! Press any key to exit."
 	    };
-            timeline.push(welcome);
+            timeline.push(exit);
+        
         
             
     jsPsych.init({
