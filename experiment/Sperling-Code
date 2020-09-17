@@ -44,7 +44,7 @@
                 show_clickable_nav: true
             }
         var intro = {
-           timeline: [welcome, instructions],
+           timeline: [welcome, consent, instructions],
        }
 //transition
 timeline.push(intro);
