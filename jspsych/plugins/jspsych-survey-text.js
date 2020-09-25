@@ -100,7 +100,7 @@ jsPsych.plugins['survey-text'] = (function() {
       html += '<div id="jspsych-survey-text-preamble" class="jspsych-survey-text-preamble">'+trial.preamble+'</div>';
     }
     // start form
-    html += '<form id="jspsych-survey-text-form">'
+    html += '<form autocomplete="off" id="jspsych-survey-text-form">'
 
     // generate question order
     var question_order = [];
