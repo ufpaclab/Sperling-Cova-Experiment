@@ -51,18 +51,18 @@ jsPsych.plugins["sperling-canvas"] = (function() {
 
          //change to make generic canvas plugin
               ctx.font = "30px Times New Roman";
-              ctx.fillText(sample[0], (window.innerWidth/2)-160, (window.innerHeight/2)-100);
-              ctx.fillText(sample[1], ((window.innerWidth/2)-160)+100, (window.innerHeight/2)-100);
-              ctx.fillText(sample[2], ((window.innerWidth/2)-160)+200, (window.innerHeight/2)-100);
-              ctx.fillText(sample[3], ((window.innerWidth/2)-160)+300, (window.innerHeight/2)-100);
-              ctx.fillText(sample[4], (window.innerWidth/2)-160, ((window.innerHeight/2)-100)+100);
-              ctx.fillText(sample[5], ((window.innerWidth/2)-160)+100, ((window.innerHeight/2)-100)+100);
-              ctx.fillText(sample[6], ((window.innerWidth/2)-160)+200, ((window.innerHeight/2)-100)+100);
-              ctx.fillText(sample[7], ((window.innerWidth/2)-160)+300, ((window.innerHeight/2)-100)+100);
-              ctx.fillText(sample[8], (window.innerWidth/2)-160, ((window.innerHeight/2)-100)+200);
-              ctx.fillText(sample[9], ((window.innerWidth/2)-160)+100, ((window.innerHeight/2)-100)+200);
-              ctx.fillText(sample[10], ((window.innerWidth/2)-160)+200, ((window.innerHeight/2)-100)+200);
-              ctx.fillText(sample[11], ((window.innerWidth/2)-160)+300, ((window.innerHeight/2)-100)+200);
+              ctx.fillText(sample[0], (window.innerWidth/2)-130, (window.innerHeight/2)-100);
+              ctx.fillText(sample[1], ((window.innerWidth/2)-130)+75, (window.innerHeight/2)-100);
+              ctx.fillText(sample[2], ((window.innerWidth/2)-130)+150, (window.innerHeight/2)-100);
+              ctx.fillText(sample[3], ((window.innerWidth/2)-130)+225, (window.innerHeight/2)-100);
+              ctx.fillText(sample[4], (window.innerWidth/2)-130, ((window.innerHeight/2)-100)+100);
+              ctx.fillText(sample[5], ((window.innerWidth/2)-130)+75, ((window.innerHeight/2)-100)+100);
+              ctx.fillText(sample[6], ((window.innerWidth/2)-130)+150, ((window.innerHeight/2)-100)+100);
+              ctx.fillText(sample[7], ((window.innerWidth/2)-130)+225, ((window.innerHeight/2)-100)+100);
+              ctx.fillText(sample[8], (window.innerWidth/2)-130, ((window.innerHeight/2)-100)+200);
+              ctx.fillText(sample[9], ((window.innerWidth/2)-130)+75, ((window.innerHeight/2)-100)+200);
+              ctx.fillText(sample[10], ((window.innerWidth/2)-130)+150, ((window.innerHeight/2)-100)+200);
+              ctx.fillText(sample[11], ((window.innerWidth/2)-130)+225, ((window.innerHeight/2)-100)+200);
           
           jsPsych.pluginAPI.getKeyboardResponse({
             callback_function: after_response,
