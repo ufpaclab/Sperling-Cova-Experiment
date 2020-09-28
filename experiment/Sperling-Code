@@ -14,13 +14,10 @@
 	<script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-instructions.js"></script>
 	<script src="https://apfahler.github.io/jsPsychSheet/jspsych/plugins/jspsych-image-button-response.js"><script>
         <link href="https://apfahler.github.io/jsPsychSheet/jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
-	<link href="format.css" rel="stylesheet" type="text/css"></link>
+	<link href="https://apfahler.github.io/jsPsychSheet/experiment/format.css" rel="stylesheet" type="text/css"></link>
     </head>
     <script>
     
-    .jspsych-content-wrapper {
-    	background-color: white;
-}
         timeline = []; 
         
         timeline.push({
